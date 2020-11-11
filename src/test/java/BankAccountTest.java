@@ -34,14 +34,18 @@ public class BankAccountTest {
         this.solde -= this.montant;
     }
 
-    @Test
+    @Test()
     public void testHistoriqueDuCompte() {
+        this.compte.depot(this.montant);
+        this.compte.retrait(this.montant);
         assertEquals(this.compte.getHistorique().size(), 2);
     }
 
     @Test
     public void testFirstValueInHistoriqueShouldBeADepot() {
-        assertEquals(this.compte.getHistorique().get(0), new Depot(this.montant, this.solde));
+        this.compte.depot(this.montant);
+        this.compte.retrait(this.montant);
+        assertEquals(this.compte.getHistorique().get(0), new Depot(this.montant, this.montant));
     }
 
 
