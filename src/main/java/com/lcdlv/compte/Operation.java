@@ -1,6 +1,8 @@
 package com.lcdlv.compte;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 
 public abstract class Operation {
 
@@ -24,5 +26,22 @@ public abstract class Operation {
                 ", montant=" + montant +
                 ", solde=" + solde +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Operation operation = (Operation) o;
+        return type == operation.type &&
+                new SimpleDateFormat("dd-MM-yyyy").format(date)
+                .equals(new SimpleDateFormat("dd-MM-yyyy").format(operation.date)) &&
+                montant.equals(operation.montant) &&
+                solde.equals(operation.solde);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(type, date, montant, solde);
     }
 }
