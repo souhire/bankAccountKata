@@ -1,10 +1,10 @@
 import com.lcdlv.compte.Compte;
+import com.lcdlv.compte.Depot;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class BankAccountTest {
@@ -36,7 +36,12 @@ public class BankAccountTest {
 
     @Test
     public void testHistoriqueDuCompte() {
-        fail("not implemented");
+        assertEquals(this.compte.getHistorique().size(), 2);
+    }
+
+    @Test
+    public void testFirstValueInHistoriqueShouldBeADepot() {
+        assertEquals(this.compte.getHistorique().get(0), new Depot(this.montant, this.solde));
     }
 
 

@@ -28,4 +28,9 @@ public class Compte implements Account{
     public Double getSolde() {
         return this.solde;
     }
+
+    @Override
+    public ArrayList<Operation> getHistorique() {
+        return this.historique;
+    }
 }
